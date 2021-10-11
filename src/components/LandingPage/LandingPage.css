@@ -1,0 +1,10 @@
+.root-div {
+  position: absolute;
+  width: 598px;
+  height: 524px;
+  left: 421px;
+  top: 100px;
+
+  background: #fbfbfb;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.16);
+}
