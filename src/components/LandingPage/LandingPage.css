@@ -1,10 +1,104 @@
 .root-div {
   position: absolute;
-  width: 598px;
-  height: 524px;
-  left: 421px;
+  width: 400px;
+  height: 400px;
+  left: 500px;
   top: 100px;
 
   background: #fbfbfb;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.16);
+}
+
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.justify-center {
+  justify-content: center;
+  align-items: center;
+}
+.w-50 {
+  width: 50%;
+}
+.w-100 {
+  width: 100%;
+}
+.w-80 {
+  width: 80%;
+}
+.mh-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+input {
+  background-color: #c4c4c4;
+  align-self: center;
+  padding: 12px;
+  margin: 10px;
+  border: none;
+  color: black;
+  width: 80%;
+}
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+select {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.btn {
+  background-color: #c4c4c4;
+  color: black;
+  border: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+.ph-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.ph-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.bb {
+  display: block;
+  border-bottom: 3px solid black;
+}
+.login {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+  text-decoration: underline;
+}
+.h-10 {
+  height: 10%;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.w-70 {
+  width: 70%;
+}
+.self-center {
+  align-self: center;
+}
+.dn {
+  display: none;
 }
