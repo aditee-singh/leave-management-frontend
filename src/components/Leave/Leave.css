@@ -1,0 +1,13 @@
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.justify-left {
+  justify-content: left;
+}
+.pv-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}

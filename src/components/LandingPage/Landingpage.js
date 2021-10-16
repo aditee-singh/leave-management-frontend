@@ -1,6 +1,7 @@
 import "./LandingPage.css";
 import axios from "axios";
 import { useRef, useState } from "react";
+import { useHistory } from "react-router";
 
 const Signup = (props) => {
   const nameRef = useRef();
@@ -39,6 +40,10 @@ const Signup = (props) => {
       });
   };
 
+  const UpdatePassword = (props) => {
+    return <div></div>;
+  };
+
   return (
     <div
       className={`flex w-80 self-center flex-column justify-center ${props.classes}`}
@@ -73,6 +78,8 @@ const Login = (props) => {
   const nameRef = useRef();
   const passwordRef = useRef();
 
+  let history = useHistory();
+
   const apiUrl = "https://ncs-leave-management.herokuapp.com/api/login";
 
   const handleLogin = async (e) => {
@@ -90,6 +97,7 @@ const Login = (props) => {
         if (res.data.jwt) {
           localStorage.setItem("user", JSON.stringify(res.data));
           console.log("Login succesfull");
+          history.push("/profile");
         }
       })
       .catch((err) => {
