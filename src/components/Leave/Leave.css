@@ -1,5 +1,10 @@
+.leave1 {
+  margin-left: 20%;
+  font-family: Inter;
+}
 .flex {
   display: flex;
+  padding-left: 20px;
 }
 .flex-column {
   flex-direction: column;

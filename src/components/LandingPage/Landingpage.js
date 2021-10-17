@@ -1,27 +1,27 @@
 import "./LandingPage.css";
+
 import axios from "axios";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router";
+import { TextField, Button, FormLabel, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 
 const Signup = (props) => {
-  const nameRef = useRef();
-  const desigRef = useRef();
-  const deptRef = useRef();
-  const phoneRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
+ 
+
+  let history = useHistory();
+
 
   const apiUrl = "https://ncs-leave-management.herokuapp.com/api/signup";
 
   const handleSignup = async (e) => {
     e.preventDefault();
     const user = {
-      fullName: nameRef.current.value,
-      email: emailRef.current.value,
-      designation: desigRef.current.value,
-      department: deptRef.current.value,
-      phone: phoneRef.current.value,
-      password: passwordRef.current.value,
+      fullName: name,
+      email: email,
+      designation: designation,
+      department: department,
+      phone: phone,
+      password: password,
     };
 
     console.log(user);
@@ -34,49 +34,135 @@ const Signup = (props) => {
         //   localStorage.setItem("user", JSON.stringify(res.data));
         //   console.log("Login succesfull");
         // }
+        history.push('/profile');
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const UpdatePassword = (props) => {
-    return <div></div>;
+  const [department, setDepartment] = useState(null);
+  const [designation, setDesignation] = useState(null);
+  const [name, setName] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+
+
+  const handleDeptChange = (event) => {
+    setDepartment(event.target.value);
   };
+  const handleDesigChange = (event) => {
+      setDesignation(event.target.value);
+  };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const handlePhoneChange = (event) => {
+      setPhone(event.target.value);
+  };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+
 
   return (
     <div
-      className={`flex w-80 self-center flex-column justify-center ${props.classes}`}
+      className={`w-80 self-center flex-column justify-center ${props.classes}`}
     >
       <form onSubmit={handleSignup} className="flex flex-column">
-        <input type="text" placeholder="Full Name" ref={nameRef} />
-        <div className="flex flex-row justify-between">
-          <select name="designation" id="desig" ref={desigRef}>
-            <option>Designation</option>
-            <option value="hod">Head of Department</option>
-            <option value="prof">Professor</option>
-            {/* <input type="submit" value="Submit" /> */}
-          </select>
-          <select name="department" id="dept" ref={deptRef}>
-            <option>Department</option>
-            <option value="cse">CSE</option>
-            <option value="abcd">Abcd</option>
-            {/* <input type="submit" value="Submit" /> */}
-          </select>
-        </div>
+          <FormLabel component="legend" style={{"marginTop": "20px"}} ><b>Full Name</b> </FormLabel>
+          <TextField name="name" id="text"  onChange={handleNameChange} type="text"  required />
 
-        <input type="text" placeholder="Phone no." ref={phoneRef} />
-        <input type="text" placeholder="Email Address" ref={emailRef} />
-        <input type="text" placeholder="Password" ref={passwordRef} />
-        <button className="w-80 self-center btn mh-10">Signup</button>
+          <div className="flex flex-row">
+          <div style={{marginTop: "15px", display:"flex", alignItems: "center", flexFlow: "row wrap"}} >
+                        <span style={{marginRight: "40px"}}>
+                            {/* <FormLabel component="legend" ><b>Department</b> </FormLabel>
+                            <TextField name="department" id="text" type="text" required style={{width:"300px"}}/> */}
+                            <FormControl>
+                            <InputLabel id="demo-simple-select-label">Department</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                style={{width:"150px"}}
+                                label="Department"
+                                name="department"
+                                value={department}
+                                onChange={handleDeptChange}
+                            >
+                                <MenuItem value="CSE">CS</MenuItem>
+                                <MenuItem value="it">IT</MenuItem>
+                                <MenuItem value="ece">ECE</MenuItem>
+                                <MenuItem value="ee">EE</MenuItem>
+                                <MenuItem value="eee">EEE</MenuItem>
+                                <MenuItem value="ce">CE</MenuItem>
+                                <MenuItem value="me">ME</MenuItem>
+
+                            </Select>
+                            </FormControl>
+                        </span>
+                        <span>
+                            {/* <FormLabel component="legend" ><b>Designation</b> </FormLabel>
+                            <TextField name="designation" id="text" type="text" required style={{width:"300px"}}/>    */}
+
+                            <FormControl>
+                                <InputLabel id="demo-simple-select-label">Designation</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    style={{width:"150px"}}
+                                    label="Designation"
+                                    name="designation"
+                                    value={designation}
+                                    onChange={handleDesigChange}
+                                >
+                                    <MenuItem value="prof">Professor</MenuItem>
+                                    <MenuItem value="hod">HOD</MenuItem>
+                                    <MenuItem value="asstprof">Assistant Professor</MenuItem>
+                                    <MenuItem value="management">Management</MenuItem>
+                                    <MenuItem value="finance">Finance</MenuItem>
+                                    <MenuItem value="zzz">Finance</MenuItem>
+
+
+                                </Select>
+                            </FormControl>
+
+                        </span>
+                    
+                    </div>
+          </div>
+
+          <FormLabel component="legend" style={{"marginTop": "20px"}} ><b>Phone Number</b> </FormLabel>
+          <TextField name="phone" id="text"  onChange={handlePhoneChange} type="text"  required />
+
+          <FormLabel component="legend" style={{"marginTop": "20px"}} ><b>Email</b> </FormLabel>
+          <TextField name="email" id="text"  onChange={handleEmailChange} type="text"  required />
+                   
+          <FormLabel component="legend" style={{"marginTop": "20px"}}  ><b>Password</b> </FormLabel>
+          <TextField name="password" id="text" type="password" onChange={handlePasswordChange}  required />
+                   
+          <Button variant="contained" type="submit" style={{"marginTop": "20px", "marginBottom": "10px"}} > Sign Up</Button>
+
       </form>
     </div>
   );
 };
 
 const Login = (props) => {
-  const nameRef = useRef();
-  const passwordRef = useRef();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
   let history = useHistory();
 
@@ -85,17 +171,19 @@ const Login = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const user = {
-      email: nameRef.current.value,
-      password: passwordRef.current.value,
+      email: email,
+      password: password,
     };
+    
 
     axios
       .post(apiUrl, user)
       .then((res) => {
         //console.log(res);
-        console.log(res.data.jwt);
+        console.log(res.data);
         if (res.data.jwt) {
-          localStorage.setItem("user", JSON.stringify(res.data));
+          localStorage.setItem("userToken", JSON.stringify(res.data));
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
           console.log("Login succesfull");
           history.push("/profile");
         }
@@ -110,21 +198,25 @@ const Login = (props) => {
   //     console.log("Logout successfull");
   //   };
 
+
   return (
     <div
-      className={`flex w-80 self-center flex-column justify-center ${props.classes}`}
+      className={`flex-column justify-center ${props.classes}`}
     >
       <form onSubmit={handleLogin} className="flex flex-column">
-        <input type="text" placeholder="Email Address" ref={nameRef} />
-        <input type="password" placeholder="Password" ref={passwordRef} />
-        <div className="flex w-80 self-center flex-row justify-between mh-10">
-          <span>Remember me</span>
-          <span>Forgot Password</span>
-        </div>
-        <button className="w-80 self-center btn mh-10">Login</button>
+          <FormLabel component="legend" style={{"marginTop": "20px"}} ><b>Email</b> </FormLabel>
+          <TextField name="name" id="text"  type="text"  onChange={handleEmailChange} required />
+                   
+          <FormLabel component="legend" style={{"marginTop": "20px"}}  ><b>Password</b> </FormLabel>
+          <TextField name="name" id="text" type="password"  onChange={handlePasswordChange} required />
+                   
+          <Button variant="contained" type="submit" style={{"marginTop": "20px", "marginBottom": "50px"}} > Login</Button>
+
       </form>
     </div>
+  
   );
+
 };
 
 const LandingPage = () => {
@@ -132,22 +224,22 @@ const LandingPage = () => {
 
   return (
     <div className="root-div flex flex-column">
-      <div className="flex flex-row mb-40">
+      <div className="flex flex-row ">
         <span
-          className={`w-50 ph-20 ${showLogin ? "bb" : ""}`}
+          className={` w-50 ph-20 ${showLogin ? "bb" : ""} `}
           onClick={() => setShowLogin(true)}
         >
           Login
         </span>
         <span
-          className={`w-50 ph-20 ${!showLogin ? "bb" : ""}`}
+          className={` w-50 ph-20 ${showLogin ? "" : "bb"}`}
           onClick={() => setShowLogin(false)}
         >
           Signup
         </span>
       </div>
-      <Signup classes={showLogin ? "dn" : ""} />
-      <Login classes={!showLogin ? "dn" : ""} />
+      <Signup classes={showLogin ? "dn" : "flex"} />
+      <Login classes={showLogin ? "flex" : "dn"} />
     </div>
   );
 };
