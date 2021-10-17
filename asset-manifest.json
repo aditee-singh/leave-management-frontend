@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/ncs-leave-management-system/static/css/main.2156f0e3.chunk.css",
-    "main.js": "/ncs-leave-management-system/static/js/main.e3968862.chunk.js",
-    "main.js.map": "/ncs-leave-management-system/static/js/main.e3968862.chunk.js.map",
-    "runtime-main.js": "/ncs-leave-management-system/static/js/runtime-main.882e11d9.js",
-    "runtime-main.js.map": "/ncs-leave-management-system/static/js/runtime-main.882e11d9.js.map",
-    "static/js/2.07551665.chunk.js": "/ncs-leave-management-system/static/js/2.07551665.chunk.js",
-    "static/js/2.07551665.chunk.js.map": "/ncs-leave-management-system/static/js/2.07551665.chunk.js.map",
-    "index.html": "/ncs-leave-management-system/index.html",
-    "static/css/main.2156f0e3.chunk.css.map": "/ncs-leave-management-system/static/css/main.2156f0e3.chunk.css.map",
-    "static/js/2.07551665.chunk.js.LICENSE.txt": "/ncs-leave-management-system/static/js/2.07551665.chunk.js.LICENSE.txt"
+    "main.css": "/leave-management-frontend/static/css/main.2156f0e3.chunk.css",
+    "main.js": "/leave-management-frontend/static/js/main.e3968862.chunk.js",
+    "main.js.map": "/leave-management-frontend/static/js/main.e3968862.chunk.js.map",
+    "runtime-main.js": "/leave-management-frontend/static/js/runtime-main.fe0c533d.js",
+    "runtime-main.js.map": "/leave-management-frontend/static/js/runtime-main.fe0c533d.js.map",
+    "static/js/2.07551665.chunk.js": "/leave-management-frontend/static/js/2.07551665.chunk.js",
+    "static/js/2.07551665.chunk.js.map": "/leave-management-frontend/static/js/2.07551665.chunk.js.map",
+    "index.html": "/leave-management-frontend/index.html",
+    "static/css/main.2156f0e3.chunk.css.map": "/leave-management-frontend/static/css/main.2156f0e3.chunk.css.map",
+    "static/js/2.07551665.chunk.js.LICENSE.txt": "/leave-management-frontend/static/js/2.07551665.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.882e11d9.js",
+    "static/js/runtime-main.fe0c533d.js",
     "static/js/2.07551665.chunk.js",
     "static/css/main.2156f0e3.chunk.css",
     "static/js/main.e3968862.chunk.js"
