@@ -4,7 +4,6 @@
 }
 .flex {
   display: flex;
-  padding-left: 20px;
 }
 .flex-column {
   flex-direction: column;
@@ -15,4 +14,22 @@
 .pv-10 {
   padding-left: 10px;
   padding-right: 10px;
+}
+.leave-label {
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 21px !important;
+  margin-top: 10px;
+}
+.date {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
+  /* width: 100%; */
+}
+.text-primary {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
 }

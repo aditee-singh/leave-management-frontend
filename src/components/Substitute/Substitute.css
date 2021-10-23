@@ -1,4 +1,18 @@
 .subs {
-    margin-left: 20%;
-    font-family: Inter;
-  }
+  margin-left: 20%;
+  font-family: Inter;
+  margin-top: 20px;
+}
+.subs-heading {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+}
+.subs-subheading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 36px;
+}
