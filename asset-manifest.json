@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/leave-management-frontend/static/css/main.2156f0e3.chunk.css",
-    "main.js": "/leave-management-frontend/static/js/main.39fab7a5.chunk.js",
-    "main.js.map": "/leave-management-frontend/static/js/main.39fab7a5.chunk.js.map",
+    "main.css": "/leave-management-frontend/static/css/main.4aac4d48.chunk.css",
+    "main.js": "/leave-management-frontend/static/js/main.ea1e6635.chunk.js",
+    "main.js.map": "/leave-management-frontend/static/js/main.ea1e6635.chunk.js.map",
     "runtime-main.js": "/leave-management-frontend/static/js/runtime-main.fe0c533d.js",
     "runtime-main.js.map": "/leave-management-frontend/static/js/runtime-main.fe0c533d.js.map",
-    "static/js/2.ab85f499.chunk.js": "/leave-management-frontend/static/js/2.ab85f499.chunk.js",
-    "static/js/2.ab85f499.chunk.js.map": "/leave-management-frontend/static/js/2.ab85f499.chunk.js.map",
+    "static/js/2.2aa69c3a.chunk.js": "/leave-management-frontend/static/js/2.2aa69c3a.chunk.js",
+    "static/js/2.2aa69c3a.chunk.js.map": "/leave-management-frontend/static/js/2.2aa69c3a.chunk.js.map",
     "index.html": "/leave-management-frontend/index.html",
-    "static/css/main.2156f0e3.chunk.css.map": "/leave-management-frontend/static/css/main.2156f0e3.chunk.css.map",
-    "static/js/2.ab85f499.chunk.js.LICENSE.txt": "/leave-management-frontend/static/js/2.ab85f499.chunk.js.LICENSE.txt"
+    "static/css/main.4aac4d48.chunk.css.map": "/leave-management-frontend/static/css/main.4aac4d48.chunk.css.map",
+    "static/js/2.2aa69c3a.chunk.js.LICENSE.txt": "/leave-management-frontend/static/js/2.2aa69c3a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fe0c533d.js",
-    "static/js/2.ab85f499.chunk.js",
-    "static/css/main.2156f0e3.chunk.css",
-    "static/js/main.39fab7a5.chunk.js"
+    "static/js/2.2aa69c3a.chunk.js",
+    "static/css/main.4aac4d48.chunk.css",
+    "static/js/main.ea1e6635.chunk.js"
   ]
 }
