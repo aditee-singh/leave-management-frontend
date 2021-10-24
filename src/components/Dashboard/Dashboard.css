@@ -104,3 +104,19 @@
   padding-right: 50px;
   margin-left: 10px;
 }
+.admin-btn-accept {
+  width: 63px;
+  height: 33px;
+  background: #1a73e8;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+.admin-btn-reject {
+  width: 63px;
+  height: 33px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #1a73e8;
+  color: #1a73e8;
+}

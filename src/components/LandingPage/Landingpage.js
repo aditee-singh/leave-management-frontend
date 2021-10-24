@@ -39,7 +39,7 @@ const Signup = (props) => {
         //   localStorage.setItem("user", JSON.stringify(res.data));
         //   console.log("Login succesfull");
         // }
-        history.push("/profile");
+        history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -158,6 +158,15 @@ const Signup = (props) => {
           style={{ width: "400px" }}
           onChange={handlePasswordChange}
         />
+        <span className="label" style={{ paddingTop: "24px" }}>
+          Phone Number
+        </span>
+        <input
+          placeholder="Password"
+          className="signup-input"
+          style={{ width: "400px" }}
+          onChange={handlePhoneChange}
+        />
         <button className="signup-button" type="submit">
           Signup
         </button>
@@ -199,7 +208,8 @@ const Login = (props) => {
           localStorage.setItem("userToken", JSON.stringify(res.data));
           localStorage.setItem("userData", JSON.stringify(res.data.data));
           console.log("Login succesfull");
-          history.push("/profile");
+          history.push("/dashboard");
+          console.log(history);
         }
       })
       .catch((err) => {

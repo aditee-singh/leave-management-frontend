@@ -57,7 +57,7 @@ const Substitute = () => {
       <div>
         <h3 className="subs-subheading"> Pending Request </h3>
       </div>
-      <Card />
+      <Card substituteClasses={substituteClasses} />
       <div style={{ marginRight: "20px", marginTop: "50px" }}>
         <span
           style={{

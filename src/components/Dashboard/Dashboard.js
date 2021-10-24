@@ -37,7 +37,6 @@ const Dashboard = () => {
       },
     })
       .then((res) => {
-        console.log("huehuehue", res.data.data);
         setAdminLeaveDash(res.data.data);
       })
       .catch((error) => console.log("error", error));

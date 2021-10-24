@@ -18,7 +18,7 @@ const SubstitutedTable = ({ substituteClasses }) => {
           <TableCell align="right">{row.subject}</TableCell>
           <TableCell align="right">DUMMY</TableCell>
           <TableCell align="right">
-            {moment(row.date).format("DD/MM/YYYY")}
+            {moment(row.updatedAt).format("DD/MM/YYYY")}
           </TableCell>
         </TableRow>
       ))}

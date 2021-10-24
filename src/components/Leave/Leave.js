@@ -72,7 +72,11 @@ const Leave = (props) => {
         authorization: `Bearer ${userToken.jwt}`,
       },
     })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        window.location.reload();
+      })
+
       .catch((e) => {
         console.log(e);
       });

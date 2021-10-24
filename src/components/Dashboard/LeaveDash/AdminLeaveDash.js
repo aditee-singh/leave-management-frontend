@@ -3,6 +3,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import moment from "moment";
+import "../Dashboard.css";
 
 const AdminLeaveDash = ({ adminLeaveDash }) => {
   const userToken = JSON.parse(localStorage.getItem("userToken"));
@@ -14,7 +15,6 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
       data: { status },
     })
       .then((res) => {
-        console.log("huehueh", res.data);
         window.location.reload();
       })
       .catch((e) => {
@@ -60,6 +60,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
                 <Stack direction="row" spacing={2}>
                   <Button
                     variant="contained"
+                    class="admin-btn-accept"
                     color="success"
                     onClick={() => handleAccept(row._id)}
                     sx={{ fontSize: "8px", width: "5px" }}
@@ -68,6 +69,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
                   </Button>
                   <Button
                     variant="contained"
+                    class="admin-btn-reject"
                     color="error"
                     onClick={() => handleReject(row._id)}
                     sx={{ fontSize: "8px", width: "5px" }}

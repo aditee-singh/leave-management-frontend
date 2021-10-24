@@ -26,7 +26,6 @@ const ApprovedLeave = ({}) => {
       },
     })
       .then((res) => {
-        console.log("huehuehue", res.data.data);
         setApprovedLeaves(res.data.data);
       })
       .catch((error) => console.log("error", error));

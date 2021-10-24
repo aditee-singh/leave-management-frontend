@@ -2,7 +2,6 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
 const LeaveDash = ({ leaveDash }) => {
-  console.log("huehue", leaveDash);
   return (
     <>
       {leaveDash &&

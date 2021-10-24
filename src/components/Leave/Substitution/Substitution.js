@@ -54,7 +54,12 @@ const Substitution = ({ formValues, setFormValues }) => {
               id="outlined-basic"
               label="Subject"
               variant="outlined"
-              style={{ marginLeft: "24px", height: "42px", width: "182px" }}
+              style={{
+                marginLeft: "24px",
+                height: "42px",
+                width: "182px",
+                marginRight: "10px",
+              }}
             />
             {/* <FormControl>
               <InputLabel id="demo-simple-select-label">Department</InputLabel>
@@ -79,10 +84,11 @@ const Substitution = ({ formValues, setFormValues }) => {
           </span>
 
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <span className="substituionFlex">
+            <span className="substituionFlex" style={{ marginRight: "10px" }}>
               <DatePicker
                 label="Date"
                 name="date"
+                style={{ marginRight: "10px" }}
                 value={element.date || ""}
                 onChange={(newValue) => {
                   let newFormValues = [...formValues];
@@ -92,10 +98,11 @@ const Substitution = ({ formValues, setFormValues }) => {
                 renderInput={(params) => <TextField {...params} />}
               />
             </span>
-            <span className="substituionFlex">
+            <span className="substituionFlex" style={{ marginRight: "10px" }}>
               <TimePicker
                 label="Time"
                 name="time"
+                style={{ marginRight: "10px" }}
                 value={element.time || ""}
                 onChange={(newValue) => {
                   let newFormValues = [...formValues];
@@ -110,6 +117,7 @@ const Substitution = ({ formValues, setFormValues }) => {
           <span className="substituionFlex">
             <TextField
               name="substituteFaculty"
+              style={{ marginRight: "10px" }}
               value={element.substituteFaculty || ""}
               onChange={(e) => handleChange(index, e)}
               id="outlined-basic"
@@ -120,6 +128,7 @@ const Substitution = ({ formValues, setFormValues }) => {
           <span className="substituionFlex">
             <TextField
               name="email"
+              style={{ marginRight: "10px" }}
               value={element.email || ""}
               onChange={(e) => handleChange(index, e)}
               id="outlined-basic"

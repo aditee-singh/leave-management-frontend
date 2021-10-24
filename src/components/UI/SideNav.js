@@ -10,10 +10,19 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-
-const drawerWidth = 260;
+import { FaRegEdit } from "react-icons/fa";
+import {
+  DashboardOutlined,
+  PersonAddAlt1Outlined,
+  FormatListBulletedOutlined,
+  ApprovalOutlined,
+  Person,
+  Logout,
+} from "@mui/icons-material";
 
 const SideNav = () => {
+  const drawerWidth = 260;
+
   let history = useHistory();
 
   const handleLogout = () => {
@@ -55,7 +64,7 @@ const SideNav = () => {
       <List style={{ marginTop: "20px" }}>
         <ListItem button key={"Dashboard"}>
           <ListItemIcon>
-            <InboxIcon />
+            <DashboardOutlined />
           </ListItemIcon>
           <ListItemText
             primary={"Dashboard"}
@@ -66,7 +75,7 @@ const SideNav = () => {
         {userData.designation === "hod" ? (
           <ListItem button key={"My Leaves"}>
             <ListItemIcon>
-              <InboxIcon />
+              <PersonAddAlt1Outlined />
             </ListItemIcon>
             <ListItemText
               primary={"My Leaves"}
@@ -82,7 +91,8 @@ const SideNav = () => {
           key={"Apply For Leave"}
         >
           <ListItemIcon>
-            <InboxIcon />
+            {/* <EditOutlined /> */}
+            <FaRegEdit style={{ width: "20px" }} />
           </ListItemIcon>
           <ListItemText
             primary={"Apply For Leave"}
@@ -93,7 +103,7 @@ const SideNav = () => {
 
         <ListItem button key={"Substitution Request"}>
           <ListItemIcon>
-            <InboxIcon />
+            <FormatListBulletedOutlined />
           </ListItemIcon>
           <ListItemText
             primary={"Substitution Request"}
@@ -105,7 +115,7 @@ const SideNav = () => {
         {userData.designation === "hod" && (
           <ListItem button key={"Approved Leaves"}>
             <ListItemIcon>
-              <InboxIcon />
+              <ApprovalOutlined />
             </ListItemIcon>
             <ListItemText
               primary={"Approved Leaves"}
@@ -119,7 +129,7 @@ const SideNav = () => {
       <List>
         <ListItem button key={"Profile"}>
           <ListItemIcon>
-            <InboxIcon />
+            <Person />
           </ListItemIcon>
           <ListItemText
             primary={"Profile"}
@@ -130,7 +140,7 @@ const SideNav = () => {
 
         <ListItem button key={"Logout"}>
           <ListItemIcon>
-            <MailIcon />
+            <Logout />
           </ListItemIcon>
           <ListItemText
             primary={"Logout"}
