@@ -35,7 +35,7 @@ const ApprovedLeave = ({}) => {
     <div>
       <div className="dashboard flex flex-column">
         <div style={{ marginRight: "20px", marginTop: "40px" }}>
-          <span class="dash-heading">Approved Leaves </span>
+          <span className="dash-heading">Approved Leaves </span>
           <TableContainer
             component={Paper}
             style={{ marginTop: "30px", border: "2 px solid lightgray" }}

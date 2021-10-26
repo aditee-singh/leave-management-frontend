@@ -2,7 +2,6 @@
   position: absolute;
   width: auto;
   left: 33%;
-  top: 20%;
   height: auto;
   background: #fbfbfb;
   /* background-color: yellow; */
@@ -12,6 +11,17 @@
   font-family: Roboto;
   font-style: normal;
   align-items: center;
+}
+.top1 {
+  top: 10%;
+}
+.top2 {
+  top: 20%;
+}
+.landing-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../assets/SAVE_20211024_160847.jpeg");
 }
 .header {
   margin-left: 43px;

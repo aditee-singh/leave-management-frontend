@@ -42,6 +42,10 @@ const Dashboard = () => {
       .catch((error) => console.log("error", error));
   });
 
+  const handleApplyOnLeave = () => {
+    history.push("/leave-application");
+  };
+
   return (
     <div className="dashboard flex flex-column">
       <div>
@@ -63,11 +67,13 @@ const Dashboard = () => {
               <span className="leave-caption">Casual Leaves</span>
             </div>
           </div>
-          <button class="dash-btn">Apply for leave</button>
+          <button className="dash-btn" onClick={handleApplyOnLeave}>
+            Apply for leave
+          </button>
 
           <div style={{ marginRight: "20px", marginTop: "40px" }}>
             <h3 className="pending-leave"> Pending Leaves </h3>
-            <TableComponent />
+            <TableComponent data={adminLeaveDash} />
           </div>
         </div>
       ) : (

@@ -1,22 +1,21 @@
 import "./LandingPage.css";
 
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
-import {
-  TextField,
-  Button,
-  FormLabel,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-} from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 
 const Signup = (props) => {
   let history = useHistory();
 
   const apiUrl = "https://ncs-leave-management.herokuapp.com/api/signup";
+
+  const [department, setDepartment] = useState("it");
+  const [designation, setDesignation] = useState("prof");
+  const [name, setName] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -39,19 +38,15 @@ const Signup = (props) => {
         //   localStorage.setItem("user", JSON.stringify(res.data));
         //   console.log("Login succesfull");
         // }
-        history.push("/dashboard");
+        alert("Signup success!");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
+        alert(err);
+        history.push("/");
       });
   };
-
-  const [department, setDepartment] = useState(null);
-  const [designation, setDesignation] = useState(null);
-  const [name, setName] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
 
   const handleDeptChange = (event) => {
     setDepartment(event.target.value);
@@ -146,6 +141,7 @@ const Signup = (props) => {
         <input
           placeholder="E-mail Address"
           className="signup-input"
+          type="email"
           style={{ width: "400px" }}
           onChange={handleEmailChange}
         />
@@ -154,6 +150,7 @@ const Signup = (props) => {
         </span>
         <input
           placeholder="Password"
+          type="password"
           className="signup-input"
           style={{ width: "400px" }}
           onChange={handlePasswordChange}
@@ -164,10 +161,15 @@ const Signup = (props) => {
         <input
           placeholder="Password"
           className="signup-input"
+          type="number"
           style={{ width: "400px" }}
           onChange={handlePhoneChange}
         />
-        <button className="signup-button" type="submit">
+        <button
+          className="signup-button"
+          type="submit"
+          style={{ cursor: "pointer" }}
+        >
           Signup
         </button>
       </form>
@@ -209,10 +211,11 @@ const Login = (props) => {
           localStorage.setItem("userData", JSON.stringify(res.data.data));
           console.log("Login succesfull");
           history.push("/dashboard");
-          console.log(history);
         }
       })
       .catch((err) => {
+        alert("Either password or email is incorrect");
+        history.push("/");
         console.log(err);
       });
   };
@@ -231,6 +234,7 @@ const Login = (props) => {
           placeholder="Email Address"
           className="input"
           style={{ width: "400px" }}
+          type="email"
           onChange={handleEmailChange}
         />
         <span className="label" style={{ paddingTop: "24px" }}>
@@ -239,15 +243,16 @@ const Login = (props) => {
         <input
           placeholder="Password"
           className="input"
+          type="password"
           style={{ width: "400px" }}
           onChange={handlePasswordChange}
         />
         <div className="flex flex-row forgot">
           <span>
-            <label class="container">
+            <label className="container">
               Remember Me
-              <input type="checkbox" checked="checked" />
-              <span class="checkmark"></span>
+              <input type="checkbox" checked="checked" readOnly />
+              <span className="checkmark"></span>
             </label>
           </span>
           <span
@@ -257,7 +262,11 @@ const Login = (props) => {
             Forgot Password?
           </span>
         </div>
-        <button className="login-button" type="submit">
+        <button
+          className="login-button"
+          type="submit"
+          style={{ cursor: "pointer" }}
+        >
           Login
         </button>
       </form>
@@ -267,7 +276,7 @@ const Login = (props) => {
 
 const UpdatePassword = () => {
   return (
-    <div class="login-form flex flex-column" style={{ maxWidth: "400px" }}>
+    <div className="login-form flex flex-column" style={{ maxWidth: "400px" }}>
       <h1 style={{ fontWeight: "500", fontSize: "24px" }}>Forgot Password</h1>
       <p>
         Enter your e-mail address below, and we'll send you an e-mail allowing
@@ -290,7 +299,7 @@ const UpdatePassword = () => {
 
 const ResetPassword = () => {
   return (
-    <div class="login-form flex flex-column" style={{ maxWidth: "400px" }}>
+    <div className="login-form flex flex-column" style={{ maxWidth: "400px" }}>
       <h1 style={{ fontWeight: "500", fontSize: "24px" }}>Forgot Password</h1>
       <p>Password should be atleast 6 characters</p>
       <span className="label" style={{ color: "##1a73e8", marginTop: "36px" }}>
@@ -310,10 +319,10 @@ const ResetPassword = () => {
         style={{ width: "400px" }}
       />
       <span style={{ marginTop: "15px" }}>
-        <label class="container">
+        <label className="container">
           Remember Me
           <input type="checkbox" checked="checked" />
-          <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
       </span>
       <button className="login-button" type="submit">
@@ -327,36 +336,38 @@ const LandingPage = () => {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <div className="root-div">
-      <div className="header">
-        <div className={`flex flex-row`}>
-          <span
-            className={`login ${
-              showLogin
-                ? "border-primary font-primary"
-                : "border-secondary font-secondary"
-            } `}
-            onClick={() => setShowLogin(true)}
-            style={{ width: "200px" }}
-          >
-            Login
-          </span>
-          <span
-            className={`signup ${
-              !showLogin
-                ? "border-primary front-primary"
-                : "border-secondary font-secondary"
-            } `}
-            onClick={() => setShowLogin(false)}
-            style={{ width: "200px" }}
-          >
-            Signup
-          </span>
-        </div>
-        <Signup classes={showLogin ? "dn" : "flex"} />
-        <Login classes={showLogin ? "flex" : "dn"} />
-        {/* <UpdatePassword />
+    <div className="landing-page">
+      <div className={`root-div ${showLogin ? "top2" : "top1"}`}>
+        <div className="header">
+          <div className={`flex flex-row`}>
+            <span
+              className={`login ${
+                showLogin
+                  ? "border-primary font-primary"
+                  : "border-secondary font-secondary"
+              } `}
+              onClick={() => setShowLogin(true)}
+              style={{ width: "200px", cursor: "pointer" }}
+            >
+              Login
+            </span>
+            <span
+              className={`signup ${
+                !showLogin
+                  ? "border-primary front-primary"
+                  : "border-secondary font-secondary"
+              } `}
+              onClick={() => setShowLogin(false)}
+              style={{ width: "200px", cursor: "pointer" }}
+            >
+              Signup
+            </span>
+          </div>
+          <Signup classes={showLogin ? "dn" : "flex"} />
+          <Login classes={showLogin ? "flex" : "dn"} />
+          {/* <UpdatePassword />
         <ResetPassword /> */}
+        </div>
       </div>
     </div>
   );

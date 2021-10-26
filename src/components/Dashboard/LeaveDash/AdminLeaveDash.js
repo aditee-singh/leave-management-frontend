@@ -60,7 +60,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
                 <Stack direction="row" spacing={2}>
                   <Button
                     variant="contained"
-                    class="admin-btn-accept"
+                    className="admin-btn-accept"
                     color="success"
                     onClick={() => handleAccept(row._id)}
                     sx={{ fontSize: "8px", width: "5px" }}
@@ -69,7 +69,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
                   </Button>
                   <Button
                     variant="contained"
-                    class="admin-btn-reject"
+                    className="admin-btn-reject"
                     color="error"
                     onClick={() => handleReject(row._id)}
                     sx={{ fontSize: "8px", width: "5px" }}

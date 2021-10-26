@@ -3,10 +3,10 @@ import TableRow from "@mui/material/TableRow";
 import moment from "moment";
 
 const SubstitutedTable = ({ substituteClasses }) => {
-  console.log("huehue", substituteClasses);
   return (
     <>
       {substituteClasses.map((row) => (
+        row.status && row.status == 'approved' &&
         <TableRow
           key={row._id}
           //sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

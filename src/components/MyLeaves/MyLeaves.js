@@ -20,7 +20,7 @@ const MyLeaves = () => {
             <span className="leave-caption">Casual Leaves</span>
           </div>
         </div>
-        <button class="dash-btn">Apply for leave</button>
+        <button className="dash-btn">Apply for leave</button>
 
         <div style={{ marginRight: "20px", marginTop: "40px" }}>
           <h3 className="pending-leave"> Pending Leaves </h3>

@@ -23,7 +23,7 @@ const UserProfile = () => {
   const [designation, setDesignation] = useState(userData.designation);
   const [email, setEmail] = useState(userData.email);
   const [phone, setPhone] = useState(userData.phone);
-  const [toekn, settoken] = useState(userData._id);
+  const [token, settoken] = useState(userData._id);
 
   const handleDeptChange = (event) => {
     setDepartment(event.target.value);
