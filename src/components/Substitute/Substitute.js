@@ -1,4 +1,3 @@
-import CustCards from "./CustCards/CustCards";
 import SubstitutedTable from "./SubstitutedTable/SubstitutedTable";
 
 import Table from "@mui/material/Table";
@@ -8,9 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { experimentalStyled as styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Card from "../UI/Card/Card";
 
 import "./Substitute.css";
@@ -18,7 +14,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Substitute = () => {
-  const [substituteClasses, setSubClass] = useState([]);
+  const [substituteClasses, setSubstituteClasses] = useState([]);
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -31,23 +27,14 @@ const Substitute = () => {
     })
       .then((res) => {
         if (res?.data?.user?.substituteClasses) {
-          setSubClass(res?.data?.user?.substituteClasses);
+          setSubstituteClasses(res?.data?.user?.substituteClasses);
         }
+        console.log("substitute classes", res.data.user.substituteClasses);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
-
-  function createDataForCards(name, date, time, subject) {
-    return { name, date, time, subject };
-  }
-
-  const requestCards = [
-    createDataForCards("Mr. wqret", "2020-01-02", "03:01:01", "maths"),
-    createDataForCards("Mr. sad", "2020-01-02", "03:01:01", "maths"),
-    createDataForCards("Mr. qwe", "2020-01-02", "03:01:01", "maths"),
-  ];
 
   return (
     <div className="subs flex flex-column">
@@ -57,7 +44,9 @@ const Substitute = () => {
       <div>
         <h3 className="subs-subheading"> Pending Request </h3>
       </div>
-      <Card substituteClasses={substituteClasses} />
+      <div class="flex" style={{ flexWrap: "wrap" }}>
+        {substituteClasses && <Card data={substituteClasses} />}
+      </div>
       <div style={{ marginRight: "20px", marginTop: "50px" }}>
         <span
           style={{

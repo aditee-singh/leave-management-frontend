@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import {
   IoIosArrowDropdownCircle,
   IoIosArrowDropupCircle,
@@ -7,33 +8,58 @@ import {
 } from "react-icons/io";
 import "./Table.css";
 
-const Table = () => {
+import { deleteRequestWithToken } from "../../../helpers/backend_requests";
+
+const deleteLeave = '/api/leave-application';
+
+const Table = ({data}) => {
+
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
+
   const [dropClass, setDropClass] = useState(false);
   const dropdownClass = dropClass ? "db" : "dn";
   const handleClick = (e) => {
     setDropClass(!dropClass);
   };
 
+  const editButtonEvent = (evt) => {
+    alert(evt);
+    // console.log(evt);
+    // history.push({
+    //     pathname: '/my-leaves',
+    //     search: '?query='+evt.target.value,
+    // });
+  };
+
+  const cancelButtonEvent = (id) => {
+    deleteRequestWithToken({apiUrlEndpoint: deleteLeave, id, token: userToken.jwt})
+  };
+
+
   return (
     <div className="flex flex-column table">
       <div className="flex flex-row table-header">
-        <span style={{ marginRight: "76px" }}>Applied on</span>
-        <span style={{ marginRight: "37px" }}>Type of Leave</span>
-        <span style={{ marginRight: "43px" }}>Duration</span>
-        <span style={{ marginRight: "116px" }}>Leave Date</span>
-        <span>Substitute status</span>
+        <span style={{ width: "12%", textAlign: "center" }}>Applied on</span>
+        <span style={{ width: "20%", textAlign: "center" }}>Type of Leave</span>
+        <span style={{ width: "10%", textAlign: "center" }}>Duration</span>
+        <span style={{ width: "30%", textAlign: "center" }}>Leave Date</span>
+        <span style={{ width: "10%", textAlign: "center" }}>Status</span>
+        <span style={{ width: "20%", textAlign: "center" }} >Substitute status</span>
+        <span style={{ width: "20%", textAlign: "center" }} ></span>
       </div>
-      <div className="flex flex-row table-body">
-        <span style={{ marginRight: "93px" }}>12/04/21</span>
-        <span style={{ marginRight: "45px" }}>Casual Leave</span>
-        <span style={{ marginRight: "43px" }}>Full Day</span>
-        <span style={{ marginRight: "65px" }}>12/04/2 - 16/04/21</span>
+      { data && data.map((row) => 
+      <div className="flex flex-row table-body" key={row._id}>
+        <span style={{ width: "12%", textAlign: "center" }}>{new Date(row.createdAt).toLocaleDateString()}</span>
+        <span style={{ width: "20%", textAlign: "center" }}>{row.leaveRequestFor}</span>
+        <span style={{ width: "10%", textAlign: "center" }}>{row.duration}</span>
+        <span style={{ width: "30%", textAlign: "center" }}>{new Date(row.startDate).toLocaleDateString()}- {new Date(row.endDate).toLocaleDateString()}</span>
+        <span style={{ width: "10%", textAlign: "center" }}>{row.status}</span>
         <span
           onClick={handleClick}
           className="dropdown"
-          style={{ marginRight: "44px" }}
+          style={{ width: "15%", textAlign: "center" }}
         >
-          <span style={{ marginRight: "90px" }}>1/5</span>
+          <span style={{ marginRight: "20px", textAlign: "center" }}>1/5</span>
           {!dropClass ? (
             <IoIosArrowDropdownCircle />
           ) : (
@@ -50,29 +76,35 @@ const Table = () => {
             </span>
           </div>
         </span>
-        <span className="flex flex-row">
-          <button
-            style={{
-              backgroundColor: "#1a73e8",
-              color: "white",
-              border: "none",
-              paddingTop: "8px",
-              paddingBottom: "8px",
-              paddingLeft: "18px",
-              paddingRight: "18px",
-              borderRadius: "5px",
-              marginRight: "16px",
-            }}
-          >
-            Edit
-          </button>
-          <button
-            style={{ border: "none", color: "red", backgroundColor: "white" }}
-          >
-            Cancel
-          </button>
-        </span>
+        {  row.status.toLowerCase() == 'pending' ?
+          <span className="flex flex-row" style={{width: "20%"}}>
+
+            <button
+              style={{
+                backgroundColor: "#1a73e8",
+                color: "white",
+                border: "none",
+                paddingTop: "8px",
+                paddingBottom: "8px",
+                paddingLeft: "18px",
+                paddingRight: "18px",
+                borderRadius: "5px",
+                marginRight: "16px",
+              }}
+              onClick={() => editButtonEvent(row._id)}
+            >
+              Edit
+            </button>
+            <button
+              style={{ border: "none", color: "red", backgroundColor: "white" }} onClick={() => cancelButtonEvent(row._id)}
+            >
+              Cancel
+            </button>
+          </span>
+          : <span className="flex flex-row" style={{width: "20%"}}></span>
+        }
       </div>
+        )}
     </div>
   );
 };
