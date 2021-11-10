@@ -59,22 +59,21 @@ const UserProfile = () => {
       user["phone"] = evt.target.phone.value;
     }
     const userToken = JSON.parse(localStorage.getItem("userToken"));
-    
-    const apiUrlEndpoint = '/api/update-user';
+
+    const apiUrlEndpoint = "/api/update-user";
     const token = userToken.jwt;
 
-    putRequestWithToken({apiUrlEndpoint, data: user, token})
+    putRequestWithToken({ apiUrlEndpoint, data: user, token })
       .then((res) => {
         localStorage.setItem("userData", JSON.stringify(res.data.data));
-        console.log('data received after update profile', res.data.data);
+        console.log("data received after update profile", res.data.data);
         history.push("/profile");
-      }).catch((e) => {
-        console.log(e);
-        alert('Unable to update profile');
       })
-    
+      .catch((e) => {
+        console.log(e);
+        alert("Unable to update profile");
+      });
   };
-
 
   return (
     <div className="userprofile flex flex-column">
@@ -122,7 +121,7 @@ const UserProfile = () => {
                     style={{ width: "228px", height: "42px" }}
                     label="Department"
                     name="department"
-                    value={department ? department.toLowerCase(): ''}
+                    value={department ? department.toLowerCase() : ""}
                     onChange={handleDeptChange}
                   >
                     <MenuItem value="cse">CS</MenuItem>
