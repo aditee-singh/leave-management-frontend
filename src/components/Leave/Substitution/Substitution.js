@@ -1,23 +1,24 @@
+import "./Substitution.css";
 import {
   FormLabel,
   TextField,
   Button,
-  Input,
-  FormControl,
-  MenuItem,
-  Select,
   InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
 } from "@mui/material";
+import { useState, useEffect } from "react";
+import { getRequest } from "../../../helpers/backend_requests";
+
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { DatePicker, TimePicker } from "@mui/lab";
-import "./Substitution.css";
+
+const endpointForSubject = "/api/subject";
+const endpointAllFaculties = "/api/all-user";
 
 const Substitution = ({ formValues, setFormValues }) => {
-  const inputProps = {
-    step: 300,
-  };
-
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
@@ -31,7 +32,33 @@ const Substitution = ({ formValues, setFormValues }) => {
     ]);
   };
 
-  console.log(formValues);
+  // const [subject, setSubject] = useState('');
+
+  // const handleSubjChange = (event) => {
+  //   setSubject(event.target.value);
+  // };
+
+  // const [substituteFaculty, setSubstituteFaculty] = useState('');
+
+  // const handleFacultyChange = (event) => {
+  //   setSubstituteFaculty(event.target.value);
+  // };
+
+  const [selectSubjOptions, setSelectSubjOptions] = useState([]);
+  const [selectFacultyOptions, setSelectFacultyOptions] = useState([]);
+
+  useEffect(() => {
+    Promise.all([
+      getRequest({ apiUrlEndpoint: endpointForSubject }),
+      getRequest({ apiUrlEndpoint: endpointAllFaculties }),
+    ])
+      .then((res) => {
+        setSelectSubjOptions(res[0].data?.data);
+        setSelectFacultyOptions(res[1].data?.data);
+      })
+      .catch((error) => console.log("error in dashboard: ", error));
+  }, []);
+
   return (
     <div style={{ border: "1px solid gray", borderRadius: "5px" }}>
       {formValues.map((element, index) => (
@@ -47,40 +74,30 @@ const Substitution = ({ formValues, setFormValues }) => {
           </span>
           <span className="substituionFlex">
             <p style={{ marginLeft: "24px" }}>Subject</p>
-            <TextField
-              name="subject"
-              value={element.subject || ""}
-              onChange={(e) => handleChange(index, e)}
-              id="outlined-basic"
-              label="Subject"
-              variant="outlined"
-              style={{
-                marginLeft: "24px",
-                height: "42px",
-                width: "182px",
-                marginRight: "10px",
-              }}
-            />
-            {/* <FormControl>
-              <InputLabel id="demo-simple-select-label">Department</InputLabel>
+            <FormControl style={{ marginLeft: "24px" }}>
+              <InputLabel id="subject-select-input-label">Subject</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                style={{ width: "182px", height: "42px" }}
-                label="Department"
-                name="department"
-                //value={department}
-                //onChange={handleDeptChange}
+                id="subject-select-label"
+                value={element.subject || ""}
+                label="Subject"
+                onChange={(newValue) => {
+                  let newFormValues = [...formValues];
+                  newFormValues[index]["subject"] = newValue.target.value;
+                  setFormValues(newFormValues);
+                }}
+                style={{
+                  height: "56px",
+                  width: "182px",
+                  marginRight: "10px",
+                }}
               >
-                <MenuItem value="CSE">CS</MenuItem>
-                <MenuItem value="it">IT</MenuItem>
-                <MenuItem value="ece">ECE</MenuItem>
-                <MenuItem value="ee">EE</MenuItem>
-                <MenuItem value="eee">EEE</MenuItem>
-                <MenuItem value="ce">CE</MenuItem>
-                <MenuItem value="me">ME</MenuItem>
+                {selectSubjOptions.map((row) => (
+                  <MenuItem key={row._id} value={row.subjectName}>
+                    {row.subjectName + " " + row.subjectCode}
+                  </MenuItem>
+                ))}
               </Select>
-            </FormControl> */}
+            </FormControl>
           </span>
 
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -115,16 +132,42 @@ const Substitution = ({ formValues, setFormValues }) => {
           </LocalizationProvider>
 
           <span className="substituionFlex">
-            <TextField
-              name="substituteFaculty"
-              style={{ marginRight: "10px" }}
-              value={element.substituteFaculty || ""}
-              onChange={(e) => handleChange(index, e)}
-              id="outlined-basic"
-              label="Substitution Faculty"
-              variant="outlined"
-            />
+            <FormControl>
+              <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
+              <Select
+                labelId="Faculty Name"
+                id="faculty-select-label"
+                value={
+                  element && element.substituteFaculty
+                    ? `${element.substituteFaculty},${element.email}`
+                    : ""
+                }
+                label="Faculty"
+                variant="outlined"
+                onChange={(newValue) => {
+                  console.log(newValue.target.value.split(","));
+                  let newFormValues = [...formValues];
+                  newFormValues[index]["substituteFaculty"] =
+                    newValue.target.value.split(",")[0];
+                  newFormValues[index]["email"] =
+                    newValue.target.value.split(",")[1];
+                  setFormValues(newFormValues);
+                }}
+                style={{
+                  height: "56px",
+                  width: "182px",
+                  marginRight: "10px",
+                }}
+              >
+                {selectFacultyOptions.map((row) => (
+                  <MenuItem key={row._id} value={`${row._id},${row.email}`}>
+                    {row.fullName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </span>
+
           <span className="substituionFlex">
             <TextField
               name="email"
@@ -134,6 +177,7 @@ const Substitution = ({ formValues, setFormValues }) => {
               id="outlined-basic"
               label="Email Address"
               variant="outlined"
+              disabled
             />
           </span>
         </div>

@@ -11,7 +11,6 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { DatePicker } from "@mui/lab";
 import { useState } from "react";
-import moment from "moment";
 import Substitution from "./Substitution/Substitution";
 
 import "./Leave.css";
@@ -41,6 +40,8 @@ const Leave = (props) => {
     evt.preventDefault();
 
     const finalFormValues = [];
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const userID = userData._id;
 
     for (let f of formValues) {
       finalFormValues.push({
@@ -50,11 +51,13 @@ const Leave = (props) => {
           time: new Date(f.time).toTimeString().split(" ")[0],
           subject: f.subject,
           email: f.email,
+          sustituteOf: userID,
         },
       });
     }
     const data = {
       leaveRequestFor: evt.target.leave.value,
+      leaveType: evt.target.leave.value,
       duration: evt.target.dayLength.value,
       startDate: formatDate(fromDate),
       endDate: formatDate(toDate),
@@ -62,7 +65,7 @@ const Leave = (props) => {
       substituteClasses: finalFormValues,
     };
     const userToken = JSON.parse(localStorage.getItem("userToken"));
-
+    console.log(data);
     axios({
       url: "https://ncs-leave-management.herokuapp.com/api/leave-application",
       method: "post",

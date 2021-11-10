@@ -4,7 +4,6 @@ import axios from "axios";
 
 const Card = ({ data }) => {
   const userToken = JSON.parse(localStorage.getItem("userToken"));
-  console.log(data);
 
   const handleAccept = (id) => {
     console.log(id);
@@ -22,7 +21,7 @@ const Card = ({ data }) => {
       data: { status },
     })
       .then((res) => {
-        console.log("accepted", res.data);
+        console.log("approved", res.data);
         window.location.reload();
       })
       .catch((e) => {

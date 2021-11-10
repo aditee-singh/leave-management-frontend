@@ -29,13 +29,12 @@ const Substitute = () => {
         if (res?.data?.user?.substituteClasses) {
           setSubstituteClasses(res?.data?.user?.substituteClasses);
         }
-        console.log('substitute classes', res.data.user.substituteClasses);
+        console.log("substitute classes", res.data.user.substituteClasses);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
-
 
   return (
     <div className="subs flex flex-column">
@@ -45,12 +44,8 @@ const Substitute = () => {
       <div>
         <h3 className="subs-subheading"> Pending Request </h3>
       </div>
-      <div>
-        {
-          substituteClasses && (
-            <Card data={substituteClasses} />
-          )
-        }
+      <div class="flex" style={{ flexWrap: "wrap" }}>
+        {substituteClasses && <Card data={substituteClasses} />}
       </div>
       <div style={{ marginRight: "20px", marginTop: "50px" }}>
         <span

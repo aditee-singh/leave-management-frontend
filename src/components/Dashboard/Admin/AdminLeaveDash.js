@@ -36,7 +36,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
     <>
       {adminLeaveDash.map(
         (row) =>
-          row.status === "Pending" && (
+          row.status.toLowerCase() === "pending" && (
             <TableRow
               key={row._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -61,7 +61,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
                   <Button
                     variant="contained"
                     className="admin-btn-accept"
-                    color="success"
+                    //color="success"
                     onClick={() => handleAccept(row._id)}
                     sx={{ fontSize: "8px", width: "5px" }}
                   >
@@ -70,7 +70,7 @@ const AdminLeaveDash = ({ adminLeaveDash }) => {
                   <Button
                     variant="contained"
                     className="admin-btn-reject"
-                    color="error"
+                    //color="error"
                     onClick={() => handleReject(row._id)}
                     sx={{ fontSize: "8px", width: "5px" }}
                   >
